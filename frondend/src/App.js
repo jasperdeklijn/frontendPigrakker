@@ -4,26 +4,26 @@ import {Component} from "react";
 
 class App extends Component{
   state = {
-    clients: []
+    products: []
   };
 
   async componentDidMount() {
     const response = await fetch('/products');
     const body = await response.json();
-    this.setState({clients: body});
+    this.setState({products: body});
   }
 
   render() {
-    const {clients} = this.state;
+    const {products} = this.state;
     return (
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <div className="App-intro">
-              <h2>Clients</h2>
-              {clients.map(client =>
-                  <div key={client.id}>
-                    {client.productname} ({client.price})
+              <h2>products</h2>
+              {products.map(product =>
+                  <div key={product.id}>
+                    {product.productname} ({product.price})
                   </div>
               )}
             </div>
