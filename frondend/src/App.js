@@ -1,28 +1,29 @@
-
+import logo from './logo.svg';
 import './App.css';
 import {Component} from "react";
 
 class App extends Component{
   state = {
-    products: []
+    clients: []
   };
 
   async componentDidMount() {
     const response = await fetch('/products');
     const body = await response.json();
-    this.setState({products: body});
+    this.setState({clients: body});
   }
 
   render() {
-    const {products} = this.state;
+    const {clients} = this.state;
     return (
         <div className="App">
           <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
             <div className="App-intro">
-              <h2>products</h2>
-              {products.map(product =>
-                  <div key={product.id}>
-                    {product.productname} ({product.price})
+              <h2>Clients</h2>
+              {clients.map(client =>
+                  <div key={client.id}>
+                    {client.productname} ({client.price})
                   </div>
               )}
             </div>
@@ -31,4 +32,5 @@ class App extends Component{
     );
   }
 }
+
 export default App;
